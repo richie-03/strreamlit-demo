@@ -8,7 +8,7 @@ from langchain.chat_models import AzureChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
 from langchain.document_loaders import PyPDFLoader
 
-from credetials import *
+from credentials import *
 
 question = "What is physicians brain digital twin?"
 
