@@ -5,7 +5,7 @@ openai.api_type = "azure"
 openai.api_base = "https://gpt-demo1.openai.azure.com/"
 openai.api_version = "2022-12-01"
 
-with open("openai_key.txt", 'r') as file:
+with open("openapi_key.txt", 'r') as file:
    api_key = file.read().replace('\n', '')
 os.environ["OPENAI_API_KEY"] = api_key
 os.environ["AZURE_OPENAI_API_KEY"] = api_key
