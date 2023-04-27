@@ -28,9 +28,9 @@ def generate_response(*args):
       data = [Document(page_content=str(chunk))]
       var_name = f"search_index_{i}"
       locals()[var_name] = FAISS.from_documents(data, OpenAIEmbeddings(model="text-embedding-ada-002"))
-      search_indices.append(locals()[var_name]
+      search_indices.append(locals()[var_name])
     for db in search_indices:
       vectorstore.merge_from(db)
     qa = ConversationalRetrievalChain.from_llm(AzureChatOpenAI(deployment_name="GPT35-Demo1", model_name="gpt-35-turbo", temperature=0), vectorstore.as_retriever())
-    response = qa({"question": question, "chat_history": ""}
+    response = qa({"question": question, "chat_history": ""})
     return response
