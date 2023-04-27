@@ -1,4 +1,5 @@
 import os
+import openai
 
 openai.api_type = "azure"
 openai.api_base = "https://gpt-demo1.openai.azure.com/"
