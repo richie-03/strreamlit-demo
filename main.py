@@ -15,7 +15,7 @@ question = "What is physicians brain digital twin?"
 llm = AzureOpenAI(deployment_name="text-davinci-003", model_name="text-davinci-003")
 wo_data_response = llm(question)
 
-loader = PyPDFLoader("docs/KGSWC_CameraReady_Paper18.pdf")
+loader = PyPDFLoader("cisco.pdf")
 pages = loader.load_and_split()
 embeddings = OpenAIEmbeddings(model="text-embedding-ada-002")
 vectorstore = FAISS.from_documents(pages, embeddings)
