@@ -1,5 +1,5 @@
 import streamlit as st
-from generate import *
+from main import *
 # Create a text input field for the string input
 query = st.text_input("Enter your query:")
 
