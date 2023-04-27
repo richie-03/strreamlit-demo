@@ -1,1 +1,7 @@
+azure-identity
+azure-ai-ml
+azure-search-documents
+ipykernel==6.13.0
+openai
 streamlit
+langchain
