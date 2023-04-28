@@ -1,5 +1,6 @@
 #credentials.py
 import os
+'''
 import openai
 
 openai.api_type = "azure"
@@ -19,9 +20,7 @@ os.environ["OPENAI_API_BASE"] = "https://gpt-demo1.openai.azure.com"
 os.environ["OPENAI_ENGINES"] = "GPT35-Demo1"
 os.environ["OPENAI_API_VERSION"] = "2023-03-15-preview"
 
-#main.py
-import os
-import openai
+#main.py|
 import langchain
 from langchain.llms import AzureOpenAI
 from langchain.embeddings.openai import OpenAIEmbeddings
@@ -56,11 +55,15 @@ def generate_response(*args):
     qa = ConversationalRetrievalChain.from_llm(AzureChatOpenAI(deployment_name="GPT35-Demo1", model_name="gpt-35-turbo", temperature=0), vectorstore.as_retriever())
     response = qa({"question": question, "chat_history": ""})
     return response
-
+'''
 #app.py
 import streamlit as st
+import logging
 #from main import *
 # Create a text input field for the string input
+logging.basicConfig(filename='example.log', level=logging.DEBUG, format='%(asctime)s %(levelname)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+logging.info(f"Query: {query}")
+logging.info(f"Option: {option}")
 query = st.text_input("Enter your query:")
 
 # Create a toggle button to select an option
@@ -68,18 +71,21 @@ option = st.radio("Select an option:", ("wo_data", "w_data"))
 
 # Generate a response based on the selected option
 if option == "wo_data":
-    response = generate_response(query)
+  response = "Without data"
+#     response = generate_response(query)
 else:
     # Create a file upload component for the document upload
-    document_upload = st.file_uploader("Upload a document:")
-    if document_upload is None:
-        response = "Please upload a document."
-    else:
-        doc_contents = document_upload.read()
-        doc = document_upload.name
-        with open(f"{doc}","wb") as f:
-            f.write(doc_contents)
-        response = generate_response(query,doc)
+  document_upload = st.file_uploader("Upload a document:")
+  if document_upload is None:
+    response = "Please upload a document."
+  else:
+    doc_contents = document_upload.read()
+    doc = document_upload.name
+    with open(f"{doc}","wb") as f:
+      f.write(doc_contents)
+    response = "With Data"
+#         response = generate_response(query,doc)
+  logging.info(f"Response: {response}")
 
 # Display the response in a box
 st.info(response)
